@@ -1,0 +1,16 @@
+a = input("Введите группы чисел через ';': ")
+groups = [tuple(map(int, g.split())) for g in a.split(';') if a.strip()]
+names = {
+    1: "Отрезок",
+    2: "Неизвестная_фигура",
+    3: "Треугольник",
+    4: "Четырехугольник",
+    5: "Пятиугольник",
+}
+res = {}
+for g in groups:
+    name = names.get(len(g), f"{len(g)}-угольник")
+    res.setdefault(name, []).append(g)
+res = {k: tuple(v) for k, v in res.items()}
+for k, v in res.items():
+    print(f"{k}: {v}")
